@@ -36,5 +36,5 @@ else
     # Write class include to source file
     printf "#include \"${class_name}.h\"" > $src_file
 
-    echo "class \'$class_name\' created"
+    echo "class '$class_name' created"
 fi
