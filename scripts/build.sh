@@ -10,13 +10,13 @@ executable=set
 for f in ${src_dir}/*.cc ; do
     noext=${f%.cc}
     fname=${noext##*/}
-    echo g++ -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
-    g++ -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
+    echo g++ -g -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
+    g++ -g -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
 done
 
 # Build executable
-echo g++ -o ${build_dir}/${executable} ${obj_dir}/*.o \
+echo g++ -g -o ${build_dir}/${executable} ${obj_dir}/*.o \
     -I${inc_dir} `sdl2-config --cflags --libs`
 
-g++ -o ${build_dir}/${executable} ${obj_dir}/*.o \
+g++ -g -o ${build_dir}/${executable} ${obj_dir}/*.o \
     -I${inc_dir} `sdl2-config --cflags --libs`
