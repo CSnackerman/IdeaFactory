@@ -37,6 +37,13 @@ done
 
 # Generate an object file for each test suite and create executable test run
 for f in ${test_suite_dir}/*.cc ; do
+    
+    if [[ ${f} == "../suites/*.cc" ]]; then
+        echo "0 test suites found"
+        echo "exited"
+        exit
+    fi
+    
     noext=${f%.cc}
     fname=${noext##*/}
 
