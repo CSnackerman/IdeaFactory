@@ -9,6 +9,8 @@ private:
     std::vector<int> results;
 
 public:
+    static void printTestSuiteHeader(const std::string suiteName);
+    static void printTestHeader(const std::string testName);
 };
 
 #endif
