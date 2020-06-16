@@ -15,8 +15,8 @@ test_suite_dir=../suites
 debug=-g
 
 # Generate TestFacility object file
-echo g++ -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
-g++ -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
+echo g++ ${debug} -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
+g++ ${debug} -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
 
 # Generate object file for each source file in source directory
 for f in ${proj_src_dir}/*.cc ; do
