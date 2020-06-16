@@ -1,7 +1,7 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <string>
+#include <iostream>
 
 #include <SDL2/SDL.h>
 
@@ -9,21 +9,24 @@
 
 class Application {
 private:
-    static const std::string name;
+     static const std::string name;
+     bool running;
 
-    Display display;
+     Display display;
 
-    void initSDL();
-    void handleEvents();
-    void update();
-    void drawScreen();
-    void quit();
+     static void initSDL();
+     void handleEvents();
+     void update();
+     void drawScreen();
 
 public:
-    Application();
+     Application();
 
-    static void run();
-    static const char* getName() { return name.c_str(); }
+     static void initialize();
+     void run();
+     void quit();
+    
+     static const char* getName() { return name.c_str(); }
 };
 
 #endif

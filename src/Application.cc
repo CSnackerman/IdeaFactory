@@ -2,19 +2,34 @@
 
 const std::string Application::name = "Set";
 
-Application::Application() 
+Application::Application()
     :
-    display(Display(800, 600))
-{
+    display(Display(800, 600)),
+    running(true)
+{}
+
+void Application::initSDL() {
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+        SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+    }
+}
+
+void Application::initialize() {
     initSDL();
 }
 
-void Application::initSDL() {
-    SDL_Init(SDL_INIT_EVERYTHING);
-}
-
 void Application::handleEvents() {
+    SDL_Event e;
+    while(SDL_PollEvent(&e) != 0) {
 
+        switch(e.type) {
+
+            case SDL_QUIT:
+                running = false;
+                break;
+
+        }
+    }
 }
 
 void Application::update() {
@@ -22,7 +37,7 @@ void Application::update() {
 }
 
 void Application::drawScreen() {
-
+    display.update();
 }
 
 void Application::quit() {
@@ -31,5 +46,9 @@ void Application::quit() {
 
 
 void Application::run() {
-    std::cout << name << " run" << std::endl;
+    while(running) {
+        handleEvents();
+        update();
+        drawScreen();
+    }
 }

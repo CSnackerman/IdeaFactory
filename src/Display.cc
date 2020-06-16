@@ -4,8 +4,25 @@
 Display::Display() 
     : 
     resolution{500, 500},
-    window(nullptr)
+    window(nullptr),
+    surface(nullptr)
 {
+    createWindow();
+    createSurface();
+}
+
+Display::Display(int width, int height)
+    :
+    resolution{width, height},
+    window(nullptr),
+    surface(nullptr)
+
+{
+    createWindow();
+    createSurface();
+}
+
+void Display::createWindow() {
     window = SDL_CreateWindow (
         Application::getName(),
         SDL_WINDOWPOS_UNDEFINED,
@@ -16,11 +33,14 @@ Display::Display()
     );
 }
 
-Display::Display(int width, int height)
-    :
-    resolution{width, height},
-    window(nullptr)
-{}
+void Display::createSurface() {
+    surface = SDL_GetWindowSurface(window);
+}
+
+void Display::update() {
+    SDL_FillRect( surface, NULL, SDL_MapRGB( surface->format, 0x55, 0xFF, 0x22 ) );
+    SDL_UpdateWindowSurface(window);
+}
 
 void Display::print() {
     std::string resString, flagString, format;
@@ -31,7 +51,7 @@ void Display::print() {
 
     printf (
         format.c_str(), 
-        resolution.width, 
+        resolution.width,
         resolution.height,
         windowFlags
     );
