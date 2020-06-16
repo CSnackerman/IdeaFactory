@@ -1,15 +1,27 @@
 #!/bin/bash
 
-src_dir=../../src
-inc_dir=../../include
-obj_dir=../obj
-build_dir=../build
-suite_dir=../suites
+# Project source/include directories
+proj_src_dir=../../src
+proj_inc_dir=../../include
 
+# Test facility directories
+test_src_dir=../src
+test_inc_dir=../include
+test_obj_dir=../obj
+test_build_dir=../build
+test_suite_dir=../suites
+
+# Set debug flag
 debug=-g
 
+# Generate TestFacility object file
+echo g++ -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
+g++ -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${test_inc_dir}
+
 # Generate object file for each source file in source directory
-for f in ${src_dir}/*.cc ; do
+for f in ${proj_src_dir}/*.cc ; do
+
+    # Store name of file into fname cleaning off file path and extension info
     noext=${f%.cc}
     fname=${noext##*/}
 
@@ -18,31 +30,33 @@ for f in ${src_dir}/*.cc ; do
         continue;
     fi
 
-    echo g++ ${debug} -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
+    echo g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${proj_inc_dir}
 
-    g++ ${debug} -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
+    g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${proj_inc_dir}
 done
 
-# Generate an object file for each test suite and create executable
-for f in ${suite_dir}/*.cc ; do
+# Generate an object file for each test suite and create executable test run
+for f in ${test_suite_dir}/*.cc ; do
     noext=${f%.cc}
     fname=${noext##*/}
 
     echo
 
     # Compile .o file
-    echo g++ ${debug} -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
-    g++ ${debug} -o ${obj_dir}/${fname}.o -c $f -I${inc_dir}
+    echo g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${proj_inc_dir} -I${test_inc_dir}
+    
+    g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${proj_inc_dir} -I${test_inc_dir}
 
     echo
 
-    # Create executable
-    echo g++ ${debug} -o ${build_dir}/${fname} ${obj_dir}/*.o \
-        -I${inc_dir} `sdl2-config --cflags --libs`
-    g++ ${debug} -o ${build_dir}/${fname} ${obj_dir}/*.o \
-        -I${inc_dir} `sdl2-config --cflags --libs`
+    # Create executable test-set
+    echo g++ ${debug} -o ${test_build_dir}/${fname} ${test_obj_dir}/*.o \
+        -I${proj_inc_dir} -I${test_inc_dir} `sdl2-config --cflags --libs`
+
+    g++ ${debug} -o ${test_build_dir}/${fname} ${test_obj_dir}/*.o \
+        -I${proj_inc_dir} -I${test_inc_dir} `sdl2-config --cflags --libs`
 
     # Remove <test-suite> object file
-    rm -f ${obj_dir}/${fname}.o
+    rm -f ${test_obj_dir}/${fname}.o
 
 done
