@@ -5,16 +5,17 @@
 
 #include <SDL2/SDL.h>
 
-#include "Display.h"
+#include "Graphics.h"
 
 class Application {
 private:
      static const std::string name;
      bool running;
 
-     Display display;
+     Graphics gfx;
 
      static void initSDL();
+     
      void handleEvents();
      void update();
      void drawScreen();

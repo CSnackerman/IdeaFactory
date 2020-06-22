@@ -4,7 +4,7 @@ const std::string Application::name = "Set";
 
 Application::Application()
     :
-    display(Display(800, 600)),
+    gfx(800, 600),
     running(true)
 {}
 
@@ -37,7 +37,7 @@ void Application::update() {
 }
 
 void Application::drawScreen() {
-    display.update();
+    gfx.render();
 }
 
 void Application::quit() {

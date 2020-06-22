@@ -15,23 +15,17 @@ private:
         | SDL_WINDOW_INPUT_FOCUS
         | SDL_WINDOW_ALLOW_HIGHDPI;
 
-    SDL_Window* window;
-    SDL_Surface* surface;
-
     void createWindow();
-    void createSurface();
 
-public:
+protected:
+    SDL_Window* window;
+
     Display();
     Display(const int w, const int h);
 
-    void update();
+public:
     void print();
 
-    const int getWidth();
-    const int getHeight();
-    const int getWindowFlags();
-    SDL_Surface getSurface();
 };
 
 #endif
