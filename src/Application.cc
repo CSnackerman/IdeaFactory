@@ -5,7 +5,8 @@ const std::string Application::name = "Set";
 Application::Application()
     :
     gfx(800, 600),
-    running(true)
+    running(true),
+    sceneManager(SceneManager())
 {}
 
 void Application::initSDL() {
@@ -37,7 +38,8 @@ void Application::update() {
 }
 
 void Application::drawScreen() {
-    gfx.render();
+
+    gfx.render(sceneManager.getScene("game_scene"));
 }
 
 void Application::quit() {
@@ -46,6 +48,9 @@ void Application::quit() {
 
 
 void Application::run() {
+
+    sceneManager.addTestScene();
+
     while(running) {
         handleEvents();
         update();

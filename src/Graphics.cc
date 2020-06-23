@@ -25,20 +25,22 @@ void Graphics::setRenderDrawColor(SDL_Color color) {
     );
 }
 
-void Graphics::render() {
-
+void Graphics::render(GameScene scene) {
     //Clear renderer surface
     setRenderDrawColor(refreshColor);
     SDL_RenderClear(renderer);
 
-    SDL_Color rectColor {0, 100, 0, 255};
-    SDL_Rect rect {100, 100, 100, 100};
-    setRenderDrawColor(rectColor);
-    SDL_RenderFillRect(renderer, &rect);
+    //Render every ColoredRect of every GameObject of every GameScene
+    for(GameObject& gObject : scene.getGameObjects()) {
+        for(ColoredRect& cRect : gObject.getRects()) {
+            
+            SDL_Rect rect = cRect.first;
+            SDL_Color color = cRect.second;
+
+            setRenderDrawColor(color);
+            SDL_RenderFillRect(renderer, &rect);
+        }
+    }
 
     SDL_RenderPresent(renderer);
-}
-
-void Graphics::updateSurface() {
-    SDL_UpdateWindowSurface(Display::window);
 }

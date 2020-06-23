@@ -6,6 +6,8 @@
 #include <SDL2/SDL.h>
 
 #include "Graphics.h"
+#include "SceneManager.h"
+
 
 class Application {
 private:
@@ -13,6 +15,7 @@ private:
      bool running;
 
      Graphics gfx;
+     SceneManager sceneManager;
 
      static void initSDL();
      

@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 
 #include "Display.h"
+#include "GameScene.h"
 
 class Graphics : protected Display {
 private:
@@ -16,9 +17,7 @@ public:
     Graphics();
     Graphics(int width, int height);
 
-    void render();
-    void updateSurface();
-
+    void render(GameScene scene);
 };
 
 #endif
