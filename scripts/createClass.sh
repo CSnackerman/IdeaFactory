@@ -3,7 +3,7 @@
 class_name=$1
 
 src_file=../src/$class_name.cc
-header_file=../include/$class_name.h
+header_file=../src/$class_name.h
 
 class_string=""
 class_string+="#ifndef ${class_name^^}_H\n"
