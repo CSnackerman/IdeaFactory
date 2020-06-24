@@ -11,7 +11,6 @@ class SceneManager {
 private:
     std::map <std::string, GameScene> scenes;
 
-
     void addScene(std::string name, GameScene scene);
 
 public:
