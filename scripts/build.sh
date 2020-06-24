@@ -34,7 +34,7 @@ for f in ${src_dir}/*.cc ; do
 done
 
 # Generate template object files
-printf "\n${GREEN}generating object files from ${RED}src/templates ${NO_COLOR}:\n"
+printf "\n${GREEN}generating object files from ${RED}src/templates/ ${NO_COLOR}:\n"
 
 for f in ${template_dir}/*.cc ; do
 
@@ -48,7 +48,7 @@ for f in ${template_dir}/*.cc ; do
 done
 
 # Generate GameObject object files
-printf "\n${GREEN}generating object files from ${RED}src/game_objects ${NO_COLOR}:\n"
+printf "\n${GREEN}generating object files from ${RED}src/game_objects/ ${NO_COLOR}:\n"
 
 for f in ${game_object_dir}/*.cc ; do
 
@@ -62,7 +62,7 @@ for f in ${game_object_dir}/*.cc ; do
 done
 
 # Build GameScene object files
-printf "\n${GREEN}generating object files from ${RED}src/game_scenes ${NO_COLOR}:\n"
+printf "\n${GREEN}generating object files from ${RED}src/game_scenes/ ${NO_COLOR}:\n"
 
 for f in ${game_scene_dir}/*.cc ; do
 
