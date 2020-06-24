@@ -1,19 +1,19 @@
 #include "Display.h"
 #include "Application.h"
 
+//Static init
+const int Display::width = 800;
+const int Display::height = 600;
+
+const Uint32 Display::windowFlags = 
+    SDL_WINDOW_SHOWN
+    | SDL_WINDOW_MOUSE_FOCUS
+    | SDL_WINDOW_INPUT_FOCUS
+    | SDL_WINDOW_ALLOW_HIGHDPI;
+
 Display::Display() 
-    : 
-    resolution{500, 500},
-    window(nullptr)
-{
-    createWindow();
-}
-
-Display::Display(int width, int height)
     :
-    resolution{width, height},
     window(nullptr)
-
 {
     createWindow();
 }
@@ -23,8 +23,8 @@ void Display::createWindow() {
         Application::getName(),
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        resolution.width,
-        resolution.height,
+        width,
+        height,
         windowFlags
     );
 }
@@ -40,11 +40,13 @@ void Display::print() {
     format = resString + flagString;
 
     printf (
-        format.c_str(), 
-        resolution.width,
-        resolution.height,
+        format.c_str(),
+        width,
+        height,
         windowFlags
     );
 }
+
+std::pair<int, int> Display::getWindowDimens() { return std::make_pair(width, height); }
 
 

@@ -12,21 +12,19 @@
 class Application {
 private:
      static const std::string name;
-     bool running;
+     static bool running;
 
      Graphics gfx;
      SceneManager sceneManager;
-
-     static void initSDL();
      
      void handleEvents();
      void update();
      void drawScreen();
 
 public:
-     Application();
-
-     static void initialize();
+     static void initSDL();
+     void initialize();
+     
      void run();
      void quit();
     

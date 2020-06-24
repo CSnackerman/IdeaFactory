@@ -2,12 +2,11 @@
 
 GameScene SceneManager::getScene(std::string name) { return scenes[name]; }
 
-void SceneManager::addTestScene() {
-    GameObject testObject;
-    testObject.initTestGameObject();
+void SceneManager::initializeScenes() {    
+    addScene("test_scene", TestScene());
+}
 
-    GameScene testScene;
-    testScene.addGameObject(testObject);
-
-    scenes.insert(std::make_pair("game_scene", testScene));
+void SceneManager::addScene(std::string name, GameScene scene) {
+    std::pair<std::string, GameScene> scenePair = std::make_pair(name, scene);
+    scenes.insert(scenePair);
 }

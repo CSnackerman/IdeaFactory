@@ -5,9 +5,11 @@
 
 int main( int argc, char* args[] ) {
 
-	Application::initialize();
-	Application app;
+	Application::initSDL();
 
+	Application app;
+	
+	app.initialize();
 	app.run();
 	app.quit();
 

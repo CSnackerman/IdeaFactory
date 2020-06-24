@@ -1,13 +1,9 @@
 #include "Graphics.h"
 
 Graphics::Graphics() 
-{}
-
-Graphics::Graphics(int width, int height) 
     :
-    Display{width, height},
     renderer(nullptr),
-    refreshColor{0, 0, 0, 255}
+    refreshColor{1, 2, 3, 255}
 {
     renderer = SDL_CreateRenderer(Display::window, -1, SDL_RENDERER_ACCELERATED);
     if(renderer == nullptr) {

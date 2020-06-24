@@ -1,13 +1,7 @@
 #include "Application.h"
 
 const std::string Application::name = "Set";
-
-Application::Application()
-    :
-    gfx(800, 600),
-    running(true),
-    sceneManager(SceneManager())
-{}
+bool Application::running = true;
 
 void Application::initSDL() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -17,6 +11,7 @@ void Application::initSDL() {
 
 void Application::initialize() {
     initSDL();
+    sceneManager.initializeScenes();
 }
 
 void Application::handleEvents() {
@@ -39,17 +34,15 @@ void Application::update() {
 
 void Application::drawScreen() {
 
-    gfx.render(sceneManager.getScene("game_scene"));
+    gfx.render(sceneManager.getScene("test_scene"));
 }
 
 void Application::quit() {
-
+    SDL_Quit();
 }
 
 
 void Application::run() {
-
-    sceneManager.addTestScene();
 
     while(running) {
         handleEvents();

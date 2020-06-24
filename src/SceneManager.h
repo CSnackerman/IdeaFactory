@@ -4,16 +4,20 @@
 #include <string>
 #include <map>
 
-#include "GameScene.h"
+//Include GameScene implementations
+#include "game_scenes/TestScene.h"
 
 class SceneManager {
 private:
     std::map <std::string, GameScene> scenes;
 
+
+    void addScene(std::string name, GameScene scene);
+
 public:
     GameScene getScene(std::string name);
 
-    void addTestScene();
+    void initializeScenes();
 };
 
 #endif

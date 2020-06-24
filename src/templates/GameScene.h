@@ -10,10 +10,11 @@ class GameScene {
 private:
     std::vector<GameObject> gameObjects;
 
+protected:
+    void addGameObject(GameObject gameObject);
+
 public:
     GameScene();
-
-    void addGameObject(GameObject gameObject);
 
     std::vector<GameObject> getGameObjects();
 };
