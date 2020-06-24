@@ -2,9 +2,7 @@
 
 class_name=$1
 
-
-
-printf "delete class \'${class_name}\'\n"
+printf "delete class '${class_name}'\n"
 printf "  are you sure [y/n] ? "
 
 read response
@@ -18,7 +16,18 @@ if [ -z "$class_name" ]
 then
     echo "no class deleted -- empty argument"
 else
-    rm ../include/$class_name.h
-    rm ../src/$class_name.cc
+    # Attempt to remove class from all project source file directories
+    rm -f ../src/$class_name.h
+    rm -f ../src/$class_name.cc
+
+    rm -f ../src/templates/$class_name.h
+    rm -f ../src/templates/$class_name.cc
+
+    rm -f ../src/game_objects/$class_name.h
+    rm -f ../src/game_objects/$class_name.cc
+
+    rm -f ../src/game_scenes/$class_name.h
+    rm -f ../src/game_scenes/$class_name.cc
+
     echo "class '$class_name' deleted"
 fi
