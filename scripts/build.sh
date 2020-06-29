@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Directories
 src_dir='../src'
@@ -22,9 +22,8 @@ BLUE='\u001b[34m'
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
 
-# Generate object file for each source file in source directory
+# Compile src/ directory
 printf "${CYAN}generating object files from ${GREEN}src/${NO_COLOR} :\n"
-
 for f in ${src_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -36,9 +35,8 @@ for f in ${src_dir}/*.cc ; do
 
 done
 
-# Generate template object files
+# Compile template/ directory
 printf "\n${CYAN}generating object files from ${GREEN}src/templates/ ${NO_COLOR}:\n"
-
 for f in ${template_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -50,9 +48,8 @@ for f in ${template_dir}/*.cc ; do
 
 done
 
-# Generate GameObject object files
+# Compiile game_object/ directory
 printf "\n${CYAN}generating object files from ${GREEN}src/game_objects/ ${NO_COLOR}:\n"
-
 for f in ${game_object_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -64,9 +61,8 @@ for f in ${game_object_dir}/*.cc ; do
 
 done
 
-# Build GameScene object files
+# Compile game_scene/ directory
 printf "\n${CYAN}generating object files from ${GREEN}src/game_scenes/ ${NO_COLOR}:\n"
-
 for f in ${game_scene_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -82,7 +78,6 @@ done
 # Build executable
 printf "\n${CYAN}building executable ${GREEN}'${executable}' ${NO_COLOR}:\n"
 echo g++ ${debug} ${cxxflags} -o ${build_dir}/${executable} ${obj_dir}/*.o `sdl2-config --cflags --libs`
-
 g++ ${debug} ${cxxflags} -o ${build_dir}/${executable} ${obj_dir}/*.o `sdl2-config --cflags --libs`
 
 echo
