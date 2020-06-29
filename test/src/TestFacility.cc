@@ -1,5 +1,8 @@
 #include "TestFacility.h"
 
+TestFacility::TestFacility() {
+}
+
 void TestFacility::printTestSuiteHeader(const std::string suiteName) {
     printf("=== '%s' Test Run ===\n", suiteName.c_str());
 }
