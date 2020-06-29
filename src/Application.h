@@ -10,8 +10,9 @@
 
 
 class Application {
-private:
+protected:
      static const std::string name;
+     
      static bool running;
 
      Graphics gfx;
