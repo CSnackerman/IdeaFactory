@@ -12,11 +12,15 @@ private:
     SDL_Color refreshColor;
 
     void setRenderDrawColor(SDL_Color color);
+    void renderFill(GameScene);
+    void renderOutline(GameScene);
 
 public:
+    enum RenderMode { FILL, OUTLINE };
+    
     Graphics();
 
-    void render(GameScene);
+    void render(GameScene, RenderMode);
 };
 
 #endif
