@@ -9,14 +9,16 @@ class Grid : public GameObject{
 private:
     SDL_Color primary, secondary;
     int x, y, width, height, size, scale;
+    int thickness;
 
     void generateAlternatingGrid();
     void generateRandomGrid();
-
+    void generateLineGrid();
 public:
     enum GridType {
         RANDOM_GRID,
-        ALTERNATING_GRID
+        ALTERNATING_GRID,
+        LINE_GRID
     };
 
     Grid(

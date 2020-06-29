@@ -8,14 +8,14 @@ Grid::Grid (
     int scale,
     GridType type
 ) 
-    :
-    primary {114, 41, 179, 255},
-    secondary {88, 143, 219, 255},
-    x(x), 
-    y(y),
-    width(width),
-    height(height),
-    scale(scale)
+    :   primary {114, 41, 179, 255},
+        secondary {88, 143, 219, 255},
+        x(x), 
+        y(y),
+        width(width),
+        height(height),
+        scale(scale),
+        thickness(1)
 {   
     switch (type) {
         case RANDOM_GRID:
@@ -24,6 +24,10 @@ Grid::Grid (
         
         case ALTERNATING_GRID:
             generateAlternatingGrid();
+            break;
+
+        case LINE_GRID:
+            generateLineGrid();
             break;
         
         default:
@@ -39,28 +43,34 @@ void Grid::generateAlternatingGrid() {
         height = dimens.second;
     }
 
-    bool alternator = true;
-    ColoredRect coloredRect;
-    for(int row = y; row < height; row += scale) {
-        for(int col = x; col < width; col += scale) {
+    //Create background rect
+    ColoredRect background;
+    SDL_Rect bgRect = {x, y, width, height};
+    SDL_Color bgColor = secondary;
+    background = { bgRect, bgColor};
+    pushColoredRect(background);
 
-            SDL_Rect gridSquare {col, row, scale, scale};
+    ColoredRect cell;
+    SDL_Rect cellRect;
 
-            if(alternator) {
-                coloredRect = {gridSquare, primary};
-                alternator = !alternator;
-            }
-            else {
-                coloredRect = {gridSquare, secondary};
-                alternator = !alternator;
-            }
-
-            pushColoredRect(coloredRect);
+    //Generate even rows
+    for(int row = y; row < height; row += scale * 2) {
+        for(int col = x; col < width; col += scale * 2) {
+            cellRect = {col, row, scale, scale};
+            cell = {cellRect, primary};
+            pushColoredRect(cell);
         }
-
-        //Stagger the rows
-        alternator = !alternator;
     }
+
+    //Generate odd rows
+    for(int row = y + scale; row < height; row += scale * 2) {
+        for(int col = x + scale; col < width; col += scale * 2) {
+            cellRect = {col, row, scale, scale};
+            cell = {cellRect, primary};
+            pushColoredRect(cell);
+        }
+    }
+
 }
 
 void Grid::generateRandomGrid() {
@@ -88,4 +98,46 @@ void Grid::generateRandomGrid() {
             pushColoredRect(coloredRect);
         }
     }
+}
+
+void Grid::generateLineGrid() {
+    //Fetch window dimensions
+    if(width == 0 || height == 0) {
+        std::pair<int, int> dimens = Display::getWindowDimens();
+        width = dimens.first;
+        height = dimens.second;
+    }
+
+    ColoredRect gridLine;
+    SDL_Rect lineRect;
+
+    //Generate horizontal gridlines
+    for(int row = y; row <= height; row += scale) {
+        lineRect = {x, row, width, thickness};
+
+        if(row == height)
+            gridLine = {lineRect, secondary};
+        else
+            gridLine = {lineRect, primary};
+
+        pushColoredRect(gridLine);
+    }
+
+    //Generate vertical gridlines
+    for(int col = x; col <= width; col += scale) {
+        //Ensure the last enclosing line draws
+        if(col == width) {
+            col -= thickness;
+        }
+
+        lineRect = {col, y, thickness, height};
+        
+        if(col == width)
+            gridLine = {lineRect, secondary};
+        else
+            gridLine = {lineRect, primary};
+        
+        pushColoredRect(gridLine);
+    }
+    
 }
