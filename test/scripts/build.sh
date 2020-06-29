@@ -23,12 +23,6 @@ NO_COLOR='\033[0m'
 
 # Compile test source files
 printf "${CYAN}compiling test source files${NO_COLOR}\n"
-# echo g++ ${debug} -o ${test_obj_dir}/TestApplication.o -c ${test_src_dir}/TestApplication.cc -I${proj_src_dir}
-# g++ ${debug} -o ${test_obj_dir}/TestApplication.o -c ${test_src_dir}/TestApplication.cc -I${proj_src_dir}
-
-# echo g++ ${debug} -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${proj_src_dir}
-# g++ ${debug} -o ${test_obj_dir}/TestFacility.o -c ${test_src_dir}/TestFacility.cc -I${proj_src_dir}
-
 for f in ${test_src_dir}/*.cc ; do
 
     # Get the filename
@@ -39,7 +33,7 @@ for f in ${test_src_dir}/*.cc ; do
     g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${proj_src_dir}
 done
 
-# Compile *.cc in project src directory
+# Compile project source files
 printf "\n${CYAN}compiling project source files${NO_COLOR}\n"
 for f in ${proj_src_dir}/*.cc ; do
 
@@ -56,7 +50,7 @@ for f in ${proj_src_dir}/*.cc ; do
     g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f
 done
 
-# Compile GameObject directory
+# Compile game_object directory
 printf "\n${CYAN}compiling game objects${NO_COLOR}\n"
 for f in ${game_object_dir}/*.cc ; do
 
@@ -81,7 +75,7 @@ for f in ${template_dir}/*.cc ; do
     g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f
 done
 
-# Compile GameScene direcotry
+# Compile game_scene direcotry
 for f in ${game_scene_dir}/*.cc ; do
 
     # Get the filename
