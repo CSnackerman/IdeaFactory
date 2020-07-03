@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 
 #include "Graphics.h"
+#include "Log.h"
 #include "SceneManager.h"
 
 
