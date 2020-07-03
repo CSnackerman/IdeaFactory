@@ -14,6 +14,7 @@ private:
     void generateAlternatingGrid();
     void generateRandomGrid();
     void generateLineGrid();
+    
 public:
     enum GridType {
         RANDOM_GRID,
