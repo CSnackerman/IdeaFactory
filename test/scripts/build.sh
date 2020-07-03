@@ -103,12 +103,13 @@ for f in ${test_suite_dir}/*.cc ; do
     fname=${noext##*/}
 
     # Compile .o file
-    printf "\n${CYAN}compiling ${GREEN}${fname}${NO_COLOR}\n"
+    printf "\n${GREEN}${fname}:\n"
+    printf "${CYAN}compiling...${NO_COLOR}\n"
     echo g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${test_src_dir} -I${proj_src_dir}
     g++ ${debug} -o ${test_obj_dir}/${fname}.o -c $f -I${test_src_dir} -I${proj_src_dir}
 
     # Create executable
-    printf "\n${CYAN}building ${GREEN}${fname}${NO_COLOR}\n"
+    printf "\n${CYAN}building...${NO_COLOR}\n"
     echo g++ ${debug} -o ${test_build_dir}/${fname} ${test_obj_dir}/*.o \
     `sdl2-config --cflags --libs`
 
