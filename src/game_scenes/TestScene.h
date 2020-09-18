@@ -4,7 +4,7 @@
 #include "../templates/GameScene.h"
 
 //Include GameObject implementations
-#include "../game_objects/Grid.h"
+#include "../game_objects/Grids.h"
 
 class TestScene : public GameScene {
 public:
