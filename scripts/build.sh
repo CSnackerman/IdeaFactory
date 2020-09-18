@@ -27,7 +27,7 @@ NO_COLOR="\033[0m"
 upToDate="true"
 
 # Compile src/ directory
-printf "${CYAN}generating object files from ${GREEN}src/${NO_COLOR} :\n"
+printf "${CYAN}generating object files from ${GREEN}src/${NO_COLOR}\n"
 for f in ${src_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -51,7 +51,7 @@ for f in ${src_dir}/*.cc ; do
 done
 
 # Compile template/ directory
-printf "\n${CYAN}generating object files from ${GREEN}src/templates/ ${NO_COLOR}:\n"
+printf "\n${CYAN}generating object files from ${GREEN}src/templates/ ${NO_COLOR}\n"
 for f in ${template_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -73,7 +73,7 @@ for f in ${template_dir}/*.cc ; do
 done
 
 # Compiile game_object/ directory
-printf "\n${CYAN}generating object files from ${GREEN}src/game_objects/ ${NO_COLOR}:\n"
+printf "\n${CYAN}generating object files from ${GREEN}src/game_objects/ ${NO_COLOR}\n"
 for f in ${game_object_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -97,7 +97,7 @@ for f in ${game_object_dir}/*.cc ; do
 done
 
 # Compile game_scene/ directory
-printf "\n${CYAN}generating object files from ${GREEN}src/game_scenes/ ${NO_COLOR}:\n"
+printf "\n${CYAN}generating object files from ${GREEN}src/game_scenes/ ${NO_COLOR}\n"
 for f in ${game_scene_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -121,7 +121,7 @@ for f in ${game_scene_dir}/*.cc ; do
 done
 
 # Build target
-printf "\n${CYAN}building target ${RED}'${target}' ${NO_COLOR}:\n"
+printf "\n${CYAN}building target ${RED}'${target}' ${NO_COLOR}\n"
 if [[ ${upToDate} == "true" ]]; then
     printf "'${target}' up-to-date\n"
     exit;
