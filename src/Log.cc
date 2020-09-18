@@ -1,5 +1,7 @@
 #include "Log.h"
 
+
+
 void Log::info(std::string format, ...) {
 
     #ifndef LOG_DEBUG
