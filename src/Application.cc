@@ -9,8 +9,7 @@ void Application::initSDL() {
     }
 }
 
-void Application::initialize() {
-    initSDL();
+void Application::setup() {
     sceneManager.initializeScenes();
 }
 

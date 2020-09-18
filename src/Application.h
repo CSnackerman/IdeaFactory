@@ -25,11 +25,12 @@ protected:
 
 public:
      static void initSDL();
-     void initialize();
-     
+
+     void setup();
+
      void run();
      void quit();
-    
+
      static const char* getName() { return name.c_str(); }
 };
 
