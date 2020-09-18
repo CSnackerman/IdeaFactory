@@ -7,35 +7,47 @@ Grid::Grid (
     int height,
     int scale,
     GridType type
-) 
-    :   primary {114, 41, 179, 255},
-        secondary {88, 143, 219, 255},
-        x(x), 
-        y(y),
-        width(width),
-        height(height),
-        scale(scale),
-        thickness(1)
-{   
-    switch (type) {
+) :    
+    x       (x),        // Top-left   
+    y       (y),        
+    width   (width),    
+    height  (height),
+    scale   (scale),    // Size of each square cell in px
+    type    (type)
+{
+    // Line thickness for LineGrid
+    thickness = 1;
+
+    // Colors
+    primary = {255, 255, 255, 255};
+    secondary = {0, 0, 0, 255};
+
+    // Intialize selected grid
+    initGrid();
+}
+
+void Grid::initGrid() {
+
+    switch (this->type) {
         case RANDOM_GRID:
-            generateRandomGrid();
+            initRandomGrid();
             break;
         
         case ALTERNATING_GRID:
-            generateAlternatingGrid();
+            initAlternatingGrid();
             break;
 
         case LINE_GRID:
-            generateLineGrid();
+            initLineGrid();
             break;
         
         default:
-            generateAlternatingGrid();
+            initAlternatingGrid();
     }
 }
 
-void Grid::generateAlternatingGrid() {
+void Grid::initAlternatingGrid() {
+    
     //Fetch window dimensions
     if(width == 0 || height == 0) {
         std::pair<int, int> dimens = Display::getWindowDimens();
@@ -44,10 +56,10 @@ void Grid::generateAlternatingGrid() {
     }
 
     //Create background rect
-    ColoredRect background;
-    SDL_Rect bgRect = {x, y, width, height};
-    SDL_Color bgColor = secondary;
-    background = { bgRect, bgColor};
+    ColoredRect background = {
+        SDL_Rect {x, y, width, height},
+        SDL_Color {secondary}
+    };
     pushColoredRect(background);
 
     ColoredRect cell;
@@ -73,7 +85,7 @@ void Grid::generateAlternatingGrid() {
 
 }
 
-void Grid::generateRandomGrid() {
+void Grid::initRandomGrid() {
     std::random_device rand;
 
     //Fetch window dimensions
@@ -100,7 +112,7 @@ void Grid::generateRandomGrid() {
     }
 }
 
-void Grid::generateLineGrid() {
+void Grid::initLineGrid() {
     //Fetch window dimensions
     if(width == 0 || height == 0) {
         std::pair<int, int> dimens = Display::getWindowDimens();
@@ -111,8 +123,9 @@ void Grid::generateLineGrid() {
     ColoredRect gridLine;
     SDL_Rect lineRect;
 
-    //Generate horizontal gridlines
+    // Generate horizontal gridlines
     for(int row = y; row <= height; row += scale) {
+        
         lineRect = {x, row, width, thickness};
 
         if(row == height)
@@ -125,6 +138,7 @@ void Grid::generateLineGrid() {
 
     //Generate vertical gridlines
     for(int col = x; col <= width; col += scale) {
+
         //Ensure the last enclosing line draws
         if(col == width) {
             col -= thickness;

@@ -4,25 +4,28 @@
 #include <random>
 
 #include "../templates/GameObject.h"
+#include "../Log.h"
 
 class Grid : public GameObject{
-private:
-    SDL_Color primary, secondary;
-    int x, y, width, height, size, scale;
-    int thickness;
-
-    void generateAlternatingGrid();
-    void generateRandomGrid();
-    void generateLineGrid();
-    
 public:
     enum GridType {
-        RANDOM_GRID,
         ALTERNATING_GRID,
-        LINE_GRID
+        LINE_GRID,
+        RANDOM_GRID
     };
 
-    Grid(
+protected:
+    int x, y, width, height, size, scale;
+    int thickness;
+    GridType type;
+    SDL_Color primary, secondary;
+
+    void initAlternatingGrid();
+    void initRandomGrid();
+    void initLineGrid();
+
+public:
+    Grid (
         int x,
         int y, 
         int width,
@@ -30,6 +33,9 @@ public:
         int scale,
         GridType type
     );
+
+private:
+    void initGrid();
 };
 
 #endif
