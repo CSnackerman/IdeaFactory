@@ -8,14 +8,7 @@
 #include <memory>
 
 #include "GameObject.h"
-
-namespace SCENES {
-    typedef const std::string SceneKey;
-
-    SceneKey test_scene = "test_scene";
-    SceneKey menu_scene = "menu_scene";
-    SceneKey game_scene = "game_scene";
-}
+#include "../game_scenes/SCENES.h"
 
 using namespace SCENES;
 
