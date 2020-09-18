@@ -6,7 +6,7 @@ int main() {
 
 	Application app;
 	
-	app.initialize();
+	app.setup();
 	app.run();
 	app.quit();
 
