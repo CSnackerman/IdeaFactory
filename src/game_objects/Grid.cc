@@ -16,11 +16,11 @@ Grid::Grid (
     type    (type)
 {
     // Line thickness for LineGrid
-    thickness = 1;
+    thickness = 10;
 
     // Colors
-    primary = {255, 255, 255, 255};
-    secondary = {0, 0, 0, 255};
+    primary = {110, 0, 184, 255};
+    secondary = {33, 33, 33, 255};
 
     // Intialize selected grid
     initGrid();
@@ -125,13 +125,14 @@ void Grid::initLineGrid() {
 
     // Generate horizontal gridlines
     for(int row = y; row <= height; row += scale) {
-        
-        lineRect = {x, row, width, thickness};
 
-        if(row == height)
-            gridLine = {lineRect, secondary};
-        else
-            gridLine = {lineRect, primary};
+        //Ensure the last enclosing line draws
+        if(row == height) {
+            row -= thickness;
+        }
+
+        lineRect = {x, row, width, thickness};
+        gridLine = {lineRect, primary};
 
         pushColoredRect(gridLine);
     }
@@ -139,17 +140,12 @@ void Grid::initLineGrid() {
     //Generate vertical gridlines
     for(int col = x; col <= width; col += scale) {
 
-        //Ensure the last enclosing line draws
         if(col == width) {
             col -= thickness;
         }
 
         lineRect = {col, y, thickness, height};
-        
-        if(col == width)
-            gridLine = {lineRect, secondary};
-        else
-            gridLine = {lineRect, primary};
+        gridLine = {lineRect, primary};
         
         pushColoredRect(gridLine);
     }
