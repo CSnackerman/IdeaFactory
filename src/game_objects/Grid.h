@@ -5,6 +5,7 @@
 
 #include "../templates/GameObject.h"
 #include "../Log.h"
+#include "../Debug.h"
 
 class Grid : public GameObject{
 public:
