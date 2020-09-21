@@ -123,8 +123,6 @@ for f in ${game_scene_dir}/*.cc ; do
 done
 
 # Build target
-printf $upToDate "\n"
-
 printf "\n${CYAN}building target ${RED}'${target}' ${NO_COLOR}\n"
 if [[ ${upToDate} == "true" ]]; then
     printf "'${target}' up-to-date\n"
