@@ -11,5 +11,5 @@ Grid_Fullscreen::Grid_Fullscreen(int scale, GridType type) :
     )
 
 {
-    printf("[INSTANCE] GO:Grid_Fullscreen\n");
+    printDebug("Grid_Fullscreen");
 }

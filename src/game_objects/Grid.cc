@@ -151,3 +151,36 @@ void Grid::initLineGrid() {
     }
     
 }
+
+void Grid::printDebug(const std::string classname) {
+
+    if(!DEBUG_GRID)
+        return;
+
+    std::string id = 
+        "\"" + classname + "_" + std::to_string(this->getId()) + "\"";
+
+    std::string fString =
+        "[INSTANCE] GameObject\n"
+        "  id = %s\n"
+        "  (x, y) = (%d, %d)\n"
+        "  (w, h) = (%d, %d)\n"
+        "  scale = %d\n"
+        "  thickness = %d\n"
+        "  primary = (%d, %d, %d, %d)\n"
+        "  secondary = (%d, %d, %d, %d)\n"
+        "  type = %d\n\n";
+
+    printf(
+        fString.c_str(), 
+        id.c_str(),
+        x, y,
+        width, height,
+        scale,
+        thickness,
+        primary.r, primary.g, primary.b, primary.a,
+        secondary.r, secondary.g, secondary.b, secondary.a,
+        type
+    );
+
+}

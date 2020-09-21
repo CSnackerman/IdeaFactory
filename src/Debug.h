@@ -1,6 +1,6 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG_GRID 0
+#define DEBUG_GRID 1
 
 #endif

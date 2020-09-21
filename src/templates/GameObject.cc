@@ -1,9 +1,13 @@
 #include "GameObject.h"
 
+int GameObject::id = -1;
+
 GameObject::GameObject()
     :
     rects(std::vector <ColoredRect>(1))
-{}
+{
+    ++id;
+}
 
 void GameObject::pushColoredRect(ColoredRect cRect) {
     rects.push_back(cRect);
@@ -16,3 +20,5 @@ void GameObject::initTestGameObject() {
 }
 
 std::vector<ColoredRect> GameObject::getRects() { return rects; }
+
+int GameObject::getId() { return id; }

@@ -12,8 +12,11 @@ private:
     std::vector <ColoredRect> rects;
     std::vector <ColoredLine> lines;
 
+    static int id;
+
 protected:
     void pushColoredRect(ColoredRect cRect);
+    int getId();
 
 public:
     GameObject();

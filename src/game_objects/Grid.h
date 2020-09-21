@@ -25,6 +25,8 @@ protected:
     void initRandomGrid();
     void initLineGrid();
 
+    void printDebug(const std::string classname);
+
 public:
     Grid (
         int x,
