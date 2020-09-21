@@ -66,6 +66,8 @@ for f in ${template_dir}/*.cc ; do
         fi
     fi
 
+    upToDate="false"
+
     echo g++ ${cxxflags} -o ${obj_dir}/${fname}.o -c $f
 
     g++ ${cxxflags} -o ${obj_dir}/${fname}.o -c $f
@@ -121,6 +123,8 @@ for f in ${game_scene_dir}/*.cc ; do
 done
 
 # Build target
+printf $upToDate "\n"
+
 printf "\n${CYAN}building target ${RED}'${target}' ${NO_COLOR}\n"
 if [[ ${upToDate} == "true" ]]; then
     printf "'${target}' up-to-date\n"
