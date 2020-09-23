@@ -19,7 +19,7 @@ protected:
 
 
 public:
-    void print();
+    void printDebug();
     static std::pair<int, int> getWindowDimens();
 
 };

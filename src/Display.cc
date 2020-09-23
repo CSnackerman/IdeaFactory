@@ -3,7 +3,7 @@
 
 //Static init
 const int Display::width = 800;
-const int Display::height = 600;
+const int Display::height = 800;
 
 const Uint32 Display::windowFlags = 
     SDL_WINDOW_SHOWN
@@ -16,6 +16,8 @@ Display::Display()
     window(nullptr)
 {
     createWindow();
+
+    printDebug();
 }
 
 void Display::createWindow() {
@@ -29,12 +31,16 @@ void Display::createWindow() {
     );
 }
 
-void Display::print() {
+void Display::printDebug() {
+
+    if(!DEBUG_DISPLAY)
+        return;
+
     std::string resString, flagString, format;
     
     //Fields
-    resString = "[INFO]\tDisplay %dx%d\n";
-    flagString = "[INFO]\tWindow Flags 0x%.4x\n";
+    resString = "[DISPLAY]\n  Resolution %dx%d\n";
+    flagString = "  Window Flags 0x%.4x\n\n";
 
     //Concatenate
     format = resString + flagString;
