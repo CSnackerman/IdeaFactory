@@ -13,11 +13,11 @@ public:
     Point() = delete;
 
     Point(int x, int y) 
-        : coords(std::pair<int, int>(x, y)) 
+        : coords(std::pair<int, int>(x, y))
     {}
 
     Point(const Point &rhs) 
-        : coords(std::pair<int, int>(rhs.coords.first, rhs.coords.second)) 
+        : coords(std::pair<int, int>(rhs.coords.first, rhs.coords.second))
     {}
 
     void operator = (const Point &rhs) {
@@ -35,5 +35,31 @@ struct Line {
 
 typedef std::pair <SDL_Rect, SDL_Color>     ColoredRect;
 typedef std::pair <Line, SDL_Color>         ColoredLine;
+
+struct Percent {
+    float percent;
+
+    // Constructors
+    Percent() : percent(0.0f) {}
+    Percent(float pct) : percent(pct) {
+        clamp(pct);
+    }
+
+    void operator = (const Percent &rhs) {
+        float pct = rhs.percent;
+        clamp(pct);
+        this->percent = pct;
+    }
+
+private:
+    void clamp(float &pct) {
+        if(pct < 0.0f)
+            percent = 0.0f;
+        
+        if(pct > 100.0f)
+            percent = 100.0f;
+    }
+
+};
 
 #endif  
