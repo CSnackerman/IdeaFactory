@@ -16,7 +16,7 @@ Grid::Grid (
     type    (type)
 {
     // Line thickness for LineGrid
-    thickness = 10;
+    thickness = 3;
 
     // Colors
     primary = {110, 0, 184, 255};
@@ -26,20 +26,23 @@ Grid::Grid (
     initGrid();
 }
 
+Grid::Grid() : x(0), y(0), width(1), height(1), scale(5), thickness(3), type(ALTERNATING_GRID) 
+{}
+
 void Grid::initGrid() {
 
     switch (this->type) {
         case RANDOM_GRID:
             initRandomGrid();
-            break;
+            return;
         
         case ALTERNATING_GRID:
             initAlternatingGrid();
-            break;
+            return;
 
         case LINE_GRID:
             initLineGrid();
-            break;
+            return;
         
         default:
             initAlternatingGrid();
@@ -64,28 +67,32 @@ void Grid::initAlternatingGrid() {
 
     ColoredRect cell;
     SDL_Rect cellRect;
+    
+    // Store starting row and column
+    int sCol = x;
+    int sRow = y;
 
-    //Generate even rows
-    for(int row = y; row < height; row += scale * 2) {
-        for(int col = x; col < width; col += scale * 2) {
-            cellRect = {col, row, scale, scale};
+    // Generate even-row rectangles
+    for(int i = 0; i < height; i += scale * 2) {
+        for(int j = 0; j < width; j += scale * 2) {
+            cellRect = {sCol + j, sRow + i, scale, scale};
             cell = {cellRect, primary};
             pushColoredRect(cell);
         }
     }
 
-    //Generate odd rows
-    for(int row = y + scale; row < height; row += scale * 2) {
-        for(int col = x + scale; col < width; col += scale * 2) {
-            cellRect = {col, row, scale, scale};
+    // Generate odd-row rectangles
+    for(int i = scale; i < height; i += scale * 2) {
+        for(int j = scale; j < width; j += scale * 2) {
+            cellRect = {sCol + j, sRow + i, scale, scale};
             cell = {cellRect, primary};
             pushColoredRect(cell);
         }
     }
-
 }
 
 void Grid::initRandomGrid() {
+
     std::random_device rand;
 
     //Fetch window dimensions
@@ -113,6 +120,7 @@ void Grid::initRandomGrid() {
 }
 
 void Grid::initLineGrid() {
+
     //Fetch window dimensions
     if(width == 0 || height == 0) {
         std::pair<int, int> dimens = Display::getWindowDimens();
@@ -152,6 +160,16 @@ void Grid::initLineGrid() {
     
 }
 
+std::string Grid::getGridTypeAsString() {
+
+    switch (this->type) {
+        case ALTERNATING_GRID:  return "alternating_grid";
+        case LINE_GRID:         return "line_grid";
+        case RANDOM_GRID:       return "random_grid";
+        default:                return "invalid_gridtype";
+    }
+}
+
 void Grid::printDebug(const std::string classname) {
 
     if(!DEBUG_GRID)
@@ -161,7 +179,8 @@ void Grid::printDebug(const std::string classname) {
         "\"" + classname + "_" + std::to_string(this->getId()) + "\"";
 
     std::string fString =
-        "[INSTANCE] GameObject\n"
+        "[INSTANCE]\n"
+        "  basetype = GameObject\n"
         "  id = %s\n"
         "  (x, y) = (%d, %d)\n"
         "  (w, h) = (%d, %d)\n"
@@ -169,7 +188,7 @@ void Grid::printDebug(const std::string classname) {
         "  thickness = %d\n"
         "  primary = (%d, %d, %d, %d)\n"
         "  secondary = (%d, %d, %d, %d)\n"
-        "  type = %d\n\n";
+        "  type = %d (%s)\n\n";
 
     printf(
         fString.c_str(), 
@@ -180,7 +199,7 @@ void Grid::printDebug(const std::string classname) {
         thickness,
         primary.r, primary.g, primary.b, primary.a,
         secondary.r, secondary.g, secondary.b, secondary.a,
-        type
+        type, getGridTypeAsString().c_str()
     );
 
 }

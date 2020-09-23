@@ -16,18 +16,18 @@ public:
     };
 
 protected:
-    int x, y, width, height, size, scale;
+    int x, y, width, height, scale;
     int thickness;
     GridType type;
     SDL_Color primary, secondary;
 
+    void initGrid();
     void initAlternatingGrid();
     void initRandomGrid();
     void initLineGrid();
 
     void printDebug(const std::string classname);
 
-public:
     Grid (
         int x,
         int y, 
@@ -37,8 +37,10 @@ public:
         GridType type
     );
 
+    Grid();
+
 private:
-    void initGrid();
+    std::string getGridTypeAsString();
 };
 
 #endif
