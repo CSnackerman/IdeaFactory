@@ -5,8 +5,8 @@ src_dir="../src"
 obj_dir="../obj"
 build_dir="../build"
 template_dir="../src/templates"
-game_scene_dir="../src/game_scenes"
-game_object_dir="../src/game_objects"
+game_scene_dir="../src/scenes"
+game_object_dir="../src/entities"
 
 # Name of the target to be built
 target="set"
@@ -75,7 +75,7 @@ for f in ${template_dir}/*.cc ; do
 done
 
 # Compiile game_object/ directory
-printf "\n${CYAN}generating object files from ${GREEN}src/game_objects/ ${NO_COLOR}\n"
+printf "\n${CYAN}generating object files from ${GREEN}src/entities/ ${NO_COLOR}\n"
 for f in ${game_object_dir}/*.cc ; do
 
     noext=${f%.cc}
@@ -99,7 +99,7 @@ for f in ${game_object_dir}/*.cc ; do
 done
 
 # Compile game_scene/ directory
-printf "\n${CYAN}generating object files from ${GREEN}src/game_scenes/ ${NO_COLOR}\n"
+printf "\n${CYAN}generating object files from ${GREEN}src/scenes/ ${NO_COLOR}\n"
 for f in ${game_scene_dir}/*.cc ; do
 
     noext=${f%.cc}

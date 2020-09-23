@@ -1,5 +1,5 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef TEMPLATE_ENTITY_H
+#define TEMPLATE_ENTITY_H
 
 #include <vector>
 #include <SDL2/SDL_rect.h>
@@ -7,7 +7,7 @@
 #include "../Display.h"
 #include "../Types.h"
 
-class GameObject {
+class Template_Entity {
 private:
     std::vector <ColoredRect> rects;
     std::vector <ColoredLine> lines;
@@ -19,7 +19,7 @@ protected:
     int getId();
 
 public:
-    GameObject();
+    Template_Entity();
 
     void initTestGameObject();
 

@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 
 #include "Display.h"
-#include "templates/GameScene.h"
+#include "templates/template_scene.h"
 
 class Graphics : protected Display {
 private:
@@ -12,15 +12,15 @@ private:
     SDL_Color refreshColor;
 
     void setRenderDrawColor(SDL_Color color);
-    void renderFill(GameScene);
-    void renderOutline(GameScene);
+    void renderFill(Template_Scene);
+    void renderOutline(Template_Scene);
 
 public:
     enum RenderMode { FILL, OUTLINE };
     
     Graphics();
 
-    void render(GameScene, RenderMode);
+    void render(Template_Scene, RenderMode);
 };
 
 #endif

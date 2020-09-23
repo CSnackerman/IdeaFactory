@@ -3,11 +3,11 @@
 
 #include <random>
 
-#include "../templates/GameObject.h"
+#include "../templates/template_entity.h"
 #include "../Log.h"
 #include "../Debug.h"
 
-class Grid : public GameObject{
+class Grid : public Template_Entity {
 public:
     enum GridType {
         ALTERNATING_GRID,

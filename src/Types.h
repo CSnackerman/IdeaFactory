@@ -39,8 +39,7 @@ typedef std::pair <Line, SDL_Color>         ColoredLine;
 struct Percent {
     float percent;
 
-    // Constructors
-    Percent() : percent(0.0f) {}
+    Percent() = delete;
     Percent(float pct) : percent(pct) {
         clamp(pct);
     }

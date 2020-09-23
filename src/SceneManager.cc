@@ -1,12 +1,12 @@
 #include "SceneManager.h"
 
-GameScene SceneManager::getScene(std::string name) { return scenes[name]; }
+Template_Scene SceneManager::getScene(std::string name) { return scenes[name]; }
 
 void SceneManager::initializeScenes() {    
-    addScene("test_scene", TestScene());
+    addScene("scene_test", Scene_Test());
 }
 
-void SceneManager::addScene(std::string name, GameScene scene) {
-    std::pair<std::string, GameScene> scenePair = std::make_pair(name, scene);
+void SceneManager::addScene(std::string name, Template_Scene scene) {
+    std::pair<std::string, Template_Scene> scenePair = std::make_pair(name, scene);
     scenes.insert(scenePair);
 }

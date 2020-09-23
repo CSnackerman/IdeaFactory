@@ -5,16 +5,16 @@
 #include <map>
 
 //Include GameScene implementations
-#include "game_scenes/TestScene.h"
+#include "scenes/scene_test.h"
 
 class SceneManager {
 private:
-    std::map <std::string, GameScene> scenes;
+    std::map <std::string, Template_Scene> scenes;
 
-    void addScene(std::string name, GameScene scene);
+    void addScene(std::string name, Template_Scene scene);
 
 public:
-    GameScene getScene(std::string name);
+    Template_Scene getScene(std::string name);
 
     void initializeScenes();
 };

@@ -1,8 +1,8 @@
-#include "TestScene.h"
+#include "scene_test.h"
 
-TestScene::TestScene()
+Scene_Test::Scene_Test()
     :
-    GameScene(SCENES::test_scene) //assign SceneKey
+    Template_Scene(scene_test) //assign SceneKey
 {   
     // Instantiate game_object(s)
     Grid_Fullscreen fullscreenGrid(50, Grid::ALTERNATING_GRID);

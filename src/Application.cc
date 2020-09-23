@@ -32,7 +32,7 @@ void Application::update() {
 }
 
 void Application::drawScreen() {
-    gfx.render(sceneManager.getScene(SCENES::test_scene),  Graphics::RenderMode::FILL);
+    gfx.render(sceneManager.getScene(SceneKeys::scene_test),  Graphics::RenderMode::FILL);
 }
 
 void Application::quit() {
